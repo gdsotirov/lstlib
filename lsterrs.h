@@ -1,3 +1,15 @@
+/****************************************************************************
+ *  Lists Library                                                           *
+ ****************************************************************************
+ * Written by George D. Sotirov                                             *
+ * Begin date : 2002-08-22                                                  *
+ * Modify date: 2003-06-03                                                  *
+ * Version    : 0.1.0                                                       *
+ * File       : lstlib.cpp          Type: source                            *
+ * File desc. : Definitions of error messages and codes.                    *
+ * CVS Id     : $Id: lsterrs.h,v 1.2 2005/04/20 18:13:45 gsotirov Exp $
+ ****************************************************************************/
+
 #ifndef __LSTLIB_ERRORS_H
 #define __LSTLIB_ERRORS_H
 

@@ -7,6 +7,7 @@
  * Version    : 0.1.0                                                       *
  * File       : lstlib.cpp          Type: source                            *
  * File desc. : Definitions of functions and classes.                       *
+ * CVS Id     : $Id: liblst.cpp,v 1.2 2005/04/20 18:13:45 gsotirov Exp $
  ****************************************************************************/
 
 #include <stdio.h>

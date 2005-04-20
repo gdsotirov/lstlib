@@ -7,6 +7,7 @@
  * Version    : 0.1.0                                                       *
  * File       : lstlib.h            Type: header                            *
  * File desc. : Declarations of functions and classes.                      *
+ * CVS Id     : $Id: liblst.h,v 1.2 2005/04/20 18:13:45 gsotirov Exp $
  ****************************************************************************/
 
 #ifndef _LSTLIB_H
