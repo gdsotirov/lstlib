@@ -1,10 +1,8 @@
-DEBUG = 1
-
 CC = g++
 ifeq ($(DEBUG), 1)
-CCFLAGS = -Wall -ggdb
+CCFLAGS = -Wall -ggdb -fPIC
 else
-CCFLAGS = -Wall
+CCFLAGS = -Wall -fPIC
 endif
 AR = ar
 ARFLAGS = rc
