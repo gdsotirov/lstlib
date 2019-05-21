@@ -172,7 +172,7 @@ LstLib::CStack::~CStack() {
  ****************************************************************************/
 
 LstLib::CQueue::CQueue() {
-    pPrevElem = NULL;
+    pEnd = NULL;
 }
 
 /* Function: CQueue::Push
