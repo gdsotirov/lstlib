@@ -140,6 +140,13 @@ int LstLib::CStack::Position(long index) {
  * Purpose : Clear contents of the stack.
  */
 void LstLib::CStack::Clear(void) {
+    ClearStack();
+}
+
+/* Function: CStack::ClearStack
+ * Purpose : Pop all elements from the stack
+ */
+void LstLib::CStack::ClearStack(void) {
     while ( pTop != NULL )
         Pop();
 }
@@ -164,7 +171,7 @@ bool LstLib::CStack::Have(void *pData) {
 }
 
 LstLib::CStack::~CStack() {
-    Clear();
+    ClearStack();
 }
 
 /****************************************************************************
@@ -218,8 +225,18 @@ void * LstLib::CQueue::Pop(void) {
     return pData;
 }
 
+void LstLib::CQueue::Clear(void) {
+    ClearQueue();
+}
+
+void LstLib::CQueue::ClearQueue(void) {
+    while ( pTop != NULL )
+        Pop();
+    pEnd = NULL;
+}
+
 LstLib::CQueue::~CQueue() {
-    Clear();
+    ClearQueue();
 }
 
 /****************************************************************************

@@ -55,6 +55,8 @@ class CCollection;
  * Purpose: Class releasing a stack.
  */
 class CStack : public CList {
+private:
+    void ClearStack(void);
 protected:
     TListItem *pTop;
     TListItem *pCurElem;
@@ -80,6 +82,8 @@ public:
  * Purpose: Class releasing a queue.
  */
 class CQueue : public CStack {
+private:
+    void ClearQueue(void);
 protected:
     TListItem *pEnd;
 protected:
@@ -90,6 +94,7 @@ public:
     /* overrides */
     int Push(void *);
     void * Pop(void);
+    void Clear(void);
     /* destructor */
     ~CQueue();
 };
