@@ -1,13 +1,12 @@
 /****************************************************************************
  *  Lists Library                                                           *
  ****************************************************************************
- * Written by George D. Sotirov                                             *
+ * Copyright  : Georgi D. Sotirov <gdsotirov@gmail.com>                     *
  * Begin date : 2002-08-22                                                  *
  * Modify date: 2003-06-03                                                  *
  * Version    : 0.1.0                                                       *
  * File       : lstlib.cpp          Type: source                            *
  * File desc. : Definitions of functions and classes.                       *
- * CVS Id     : $Id: liblst.cpp,v 1.2 2005/04/20 18:13:45 gsotirov Exp $
  ****************************************************************************/
 
 #include <stdio.h>
