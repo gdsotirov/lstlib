@@ -15,6 +15,14 @@
 #include "lsterrs.h"
 #include "liblst.h"
 
+/**
+ * @brief Gets error message string
+ *
+ * Write the corresponding to the error code error message into the character
+ * buffer pointed by the second parameter.
+ * @param errno Error number.
+ * @param errstr Error string.
+ */
 void LstLib::GetErrMsg(long errno, char *errstr) {
     switch ( errno ) {
         case ERR_NOERROR:
@@ -42,31 +50,48 @@ void LstLib::GetErrMsg(long errno, char *errstr) {
  * Class CList implementation                                               *
  ****************************************************************************/
 
+/**
+ * @brief Default constructor
+ *
+ * Initializes empty list.
+ */
 LstLib::CList::CList() {
     count = 0;
 }
 
+/**
+ * @brief Retrieves the number of items in the list
+ */
 long LstLib::CList::GetCount(void) const {
     return count;
 }
 
-LstLib::CList::~CList() {
-}
+/**
+ * @brief Destructor
+ *
+ * Does noting.
+ */
+LstLib::CList::~CList() {}
 
 /****************************************************************************
  * Class CStack implementation                                              *
  ****************************************************************************/
 
+/**
+ * @brief Default constructor
+ *
+ * Initializes empty stack.
+ */
 LstLib::CStack::CStack() {
     pTop      = NULL;
     pCurElem  = NULL;
     pPrevElem = NULL;
 }
 
-/* Function: CStack::Push
- * Purpose : Push element at the top of the stack.
- * Input   : Pointer to the element to push.
- * Return  : Null on successful operation or not null otherwise.
+/**
+ * @brief Pushes element at the top of the stack
+ * @param pData Pointer to the element to push.
+ * @return Zero on successful operation, non-zero otherwise.
  */
 int LstLib::CStack::Push(void *pData) {
     if ( pData != NULL ) {
@@ -83,9 +108,9 @@ int LstLib::CStack::Push(void *pData) {
     else return ERR_NULL_ELEMENT;
 }
 
-/* Function: CStack::Pop
- * Purpose : Pop element from the top of the stack.
- * Return  : Pointer to element at the top.
+/**
+ * @brief Pops element from the top of the stack
+ * @return Pointer to the element at the top of the stack.
  */
 void * LstLib::CStack::Pop(void) {
     void *pData = NULL;
@@ -99,8 +124,9 @@ void * LstLib::CStack::Pop(void) {
     return pData;
 }
 
-/* Function: CStack::Get
- * Purpose : Get pointer to element at the top of the stack.
+/**
+ * @brief Gets pointer to the element at the top of the stack
+ * @return Pointer to the element at the top of the stack.
  */
 void * LstLib::CStack::Get(void) {
     pPrevElem = NULL;
@@ -110,8 +136,9 @@ void * LstLib::CStack::Get(void) {
     else return NULL;
 }
 
-/* Function: CStack::Next
- * Purpose : Get pointer to next element in the stack.
+/**
+ * @brief Gets pointer to next element in the stack
+ * @return Pointer to the next element in the stack.
  */
 void * LstLib::CStack::Next(void) {
     pPrevElem = pCurElem;
@@ -121,9 +148,10 @@ void * LstLib::CStack::Next(void) {
     else return NULL;
 }
 
-/* Function: CStack::Position
- * Purpose : Position the list pointers at element with specific index.
- * Return  : Function always return 0.
+/**
+ * @brief Positions the stack at element with given index
+ * @param index Numeric element index.
+ * @return Always zero.
  */
 int LstLib::CStack::Position(long index) {
     long ix = 0;
@@ -135,30 +163,33 @@ int LstLib::CStack::Position(long index) {
     return 0;
 }
 
-/* Function: CStack::Clear
- * Purpose : Clear contents of the stack.
+/**
+ * @brief Clears all elements from the stack
  */
 void LstLib::CStack::Clear(void) {
     ClearStack();
 }
 
-/* Function: CStack::ClearStack
- * Purpose : Pop all elements from the stack
+/**
+ * @brief Pops all elements from the stack
  */
 void LstLib::CStack::ClearStack(void) {
     while ( pTop != NULL )
         Pop();
 }
 
-/* Function: CStack::IsEmpty
- * Purpose : Check for empty stack.
+/**
+ * @brief Checks for empty stack
+ * @return True if stack is empty, false otherwise.
  */
 bool LstLib::CStack::IsEmpty(void) {
     return (pTop == NULL);
 }
 
-/* Function: CStack::Have
- * Purpose : Check if element is presented in the stack.
+/**
+ * @brief Checks if element is present in the stack
+ * @param pData Pointer to element.
+ * @return True if element is present, false otherwise.
  */
 bool LstLib::CStack::Have(void *pData) {
     TListItem *pIndex = pTop;
@@ -169,6 +200,11 @@ bool LstLib::CStack::Have(void *pData) {
     return false;
 }
 
+/**
+ * @brief Destructor
+ *
+ * Clears all elements from the stack.
+ */
 LstLib::CStack::~CStack() {
     ClearStack();
 }
@@ -177,14 +213,20 @@ LstLib::CStack::~CStack() {
  * Class CQueue implementation                                              *
  ****************************************************************************/
 
+/**
+ * @brief Default constructor
+ *
+ * Initializes empty queue.
+ */
 LstLib::CQueue::CQueue() {
     pEnd = NULL;
 }
 
-/* Function: CQueue::Push
- * Purpose : Push element at the end of the queue.
- * Input   : Pointer to the element to push.
- * Return  : Error code for the operation.
+/**
+ * @brief Pushes element at the end of the queue
+ * @param pData Pointer to an element to push.
+ * @return Error code for the operation. Could be translated to message
+ * with LstLib::GetErrMsg function.
  */
 int LstLib::CQueue::Push(void *pData) {
     if ( pData != NULL ) {
@@ -208,9 +250,9 @@ int LstLib::CQueue::Push(void *pData) {
     else return ERR_NULL_ELEMENT;
 }
 
-/* Function: CQueue::Pop
- * Purpose : Pop element from the top of the queue.
- * Return  : Pointer to element at the top.
+/**
+ * @brief Pops element from the top of the queue
+ * @return Pointer to element at the top.
  */
 void * LstLib::CQueue::Pop(void) {
     void *pData = NULL;
@@ -224,16 +266,27 @@ void * LstLib::CQueue::Pop(void) {
     return pData;
 }
 
+/**
+ * @brief Clears all element from the queue
+ */
 void LstLib::CQueue::Clear(void) {
     ClearQueue();
 }
 
+/**
+ * @brief Pops all elements from the queue
+ */
 void LstLib::CQueue::ClearQueue(void) {
     while ( pTop != NULL )
         Pop();
     pEnd = NULL;
 }
 
+/**
+ * @brief Destructor
+ *
+ * Clears all elements from the queue.
+ */
 LstLib::CQueue::~CQueue() {
     ClearQueue();
 }
@@ -242,12 +295,20 @@ LstLib::CQueue::~CQueue() {
  * Class CCollection implementation                                         *
  ****************************************************************************/
 
+/**
+ * @brief Default constructor
+ *
+ * Initializes empty collection.
+ */
 LstLib::CCollection::CCollection() {
     pList = NULL;
 }
 
-/* Function: CCollection::GetCount
- * Purpose : Retrive count of element in the collection.
+/**
+ * @brief Retrieves the count of element in the collection
+ *
+ * If collection is empty returns zero.
+ * @return Number of elements.
  */
 long LstLib::CCollection::GetCount(void) {
     if ( pList != NULL )
@@ -255,8 +316,11 @@ long LstLib::CCollection::GetCount(void) {
     else return 0;
 }
 
-/* Function: CCollectoin::Insert
- * Purpose : Insert element in the collection.
+/**
+ * @brief Inserts element in the collection
+ * @param pData Pointer to the element.
+ * @return Error code. Could be translated to message with
+ * LstLib::GetErrMsg function.
  */
 int LstLib::CCollection::Insert(void *pData) {
     if ( pList == NULL )
@@ -266,8 +330,12 @@ int LstLib::CCollection::Insert(void *pData) {
     else return ERR_CNT_ALOC_MEM;
 }
 
-/* Function: CCollection::Replace
- * Purpose : Replace element at the specified index.
+/**
+ * @brief Replaces element at given index.
+ * @param pData Pointer to the new element.
+ * @param index Index of the element to replace.
+ * @return Error code. Could be translated to message with
+ * LstLib::GetErrMsg function.
  */
 int LstLib::CCollection::Replace(void *pData, long index) {
     if ( pList != NULL ) {
@@ -285,10 +353,11 @@ int LstLib::CCollection::Replace(void *pData, long index) {
     return ERR_LST_EMPTY;
 }
 
-/* Function: CCollection::Remove
- * Purpose : Remove element at specified index from the collection.
- * Return  : NULL if element can't be removed or error ocured else pointer
- *           to the removed element data.
+/**
+ * @brief Removes element at given index
+ * @param index Index of the element to remove.
+ * @return NULL if the element cannot be removed or if error cured, else
+ * pointer to the removed element.
  */
 void * LstLib::CCollection::Remove(long index) {
     void *pData = NULL;
@@ -312,16 +381,22 @@ void * LstLib::CCollection::Remove(long index) {
     return pData;
 }
 
-/* Function: CCollection::At
- * Purpose : Extract element at specified index.
- *           This function is just a shell over the operator [].
+/**
+ * @brief Extracts element at given index
+ *
+ * This function is an alias for operator [].
+ * @param index Index of the element to extract.
+ * @return
  */
 void * LstLib::CCollection::At(long index) {
     return operator [](index);
 }
 
-/* Function: CCollection::operator []
- * Purpose : Operation for indexing the collection.
+/**
+ * @brief Operator for indexing the collection
+ *
+ * @param index Index of the element.
+ * @return Pointer to the element at the given index.
  */
 void * LstLib::CCollection::operator [](long index) {
     void *pData = NULL;
@@ -335,21 +410,29 @@ void * LstLib::CCollection::operator [](long index) {
     return pData;
 }
 
-/* Function: CCollection::Clear
- * Purpose : Remove all elements from the collection.
+/**
+ * @brief Removes all elements from the collection
  */
 void LstLib::CCollection::Clear(void) {
     if ( pList != NULL )
         pList->Clear();
 }
 
-
+/**
+ * @brief Checks whether collection is empty or not.
+ * @return True if empty, false otherwise.
+ */
 bool LstLib::CCollection::IsEmpty(void) {
     if ( pList != NULL )
         return pList->IsEmpty();
     else return false;
 }
 
+/**
+ * @brief Destructor
+ *
+ * Removes all elements from the collection if not empty.
+ */
 LstLib::CCollection::~CCollection() {
     if ( pList != NULL )
         delete pList;

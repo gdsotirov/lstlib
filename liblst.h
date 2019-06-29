@@ -9,6 +9,11 @@
  * File desc. : Declarations of functions and classes.                      *
  ****************************************************************************/
 
+/**
+ * @file liblst.h
+ * @brief Declarations of functions and classes.
+ */
+
 #ifndef _LSTLIB_H
 #define _LSTLIB_H
 
@@ -20,16 +25,18 @@ namespace LstLib {
 
 void GetErrMsg(long, char *);
 
+/** @brief List item */
 typedef struct ListItem {
-    void *pData;
-    ListItem *Next;
+    void *pData;    /**< Data pointer */
+    ListItem *Next; /**< Next item pointer */
 } TListItem;
 
-/* Class  : CList
- * Purpose: Base class for lists like stack and queue.
+/**
+ * @brief Base class for lists like stack and queue.
  */
 class CList {
 protected:
+    /** @brief Number of elements in the list */
     long count;
 public:
     /* constructors */
@@ -37,12 +44,21 @@ public:
     /* get/set functions */
     virtual long GetCount(void) const;
     /* main functions */
+    /** @brief Must be implemented to push element to the list */
     virtual int Push(void *)=0;
+    /** @brief Must be implemented to pop element from the list */
     virtual void * Pop(void)=0;
+    /** @brief Must be implemented to get element from the list */
     virtual void * Get(void)=0;
+    /** @brief Must be implemented to get next element in the list */
     virtual void * Next(void)=0;
+    /** @brief Must be implemented to clear the list by removing all
+     * elements */
     virtual void Clear(void)=0;
+    /** @brief Must be implemented to checks whether list is empty */
     virtual bool IsEmpty(void)=0;
+    /** @brief Must be implemented to check whether an element is present in
+     * the list */
     virtual bool Have(void *)=0;
     /* destructor */
     virtual ~CList();
@@ -50,15 +66,28 @@ public:
 
 class CCollection;
 
-/* Class  : CStack
- * Purpose: Class releasing a stack.
+/**
+ * @brief Class implementing stack.
+ *
+ * Stack organization is First In First Out (FIFO).
  */
 class CStack : public CList {
 private:
     void ClearStack(void);
 protected:
+    /** @brief Pointer to the element at the top of the stack */
     TListItem *pTop;
+    /**
+     * @brief Pointer to the current element in the stack
+     *
+     * Used when iterating the stack.
+     */
     TListItem *pCurElem;
+    /**
+     * @brief Pointer to the previous element in the stack
+     *
+     * Used when iterating the stack.
+     */
     TListItem *pPrevElem;
     int Position(long);
     friend class CCollection;
@@ -77,13 +106,16 @@ public:
     ~CStack();
 };
 
-/* Class  : CQueue
- * Purpose: Class releasing a queue.
+/**
+ * @brief Class implementing queue.
+ *
+ * Queue organization is First In Last Out (FILO).
  */
 class CQueue : public CStack {
 private:
     void ClearQueue(void);
 protected:
+    /** @brief Pointer to the end of the queue */
     TListItem *pEnd;
 protected:
     friend class CCollection;
@@ -98,8 +130,8 @@ public:
     ~CQueue();
 };
 
-/* Class  : CCollection
- * Purpose: Class for collection of data pointers.
+/**
+ * @brief A class for collection of data pointers
  */
 class CCollection {
 private:
