@@ -4,11 +4,14 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     
     steps:
+    - name: deps
+      run: sudo -E apt-get install --assume-yes doxygen graphviz
     - uses: actions/checkout@v1
     - name: make
       run: make
+    - name: docs
+      run: doxygen Doxyfile
 
