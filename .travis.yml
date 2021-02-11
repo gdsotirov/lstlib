@@ -10,7 +10,7 @@ addons:
     - graphviz
 branches:
   only:
-  - master
+  - main
 script: make
 after_success:
   - doxygen Doxyfile
