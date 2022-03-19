@@ -95,13 +95,13 @@ public:
     /* constructors */
     CStack();
     /* main functions */
-    int Push(void *);
-    void * Pop(void);
-    void * Get(void);
-    void * Next(void);
-    void Clear(void);
-    bool IsEmpty(void);
-    bool Have(void *);
+    int Push(void *) override;
+    void * Pop(void) override;
+    void * Get(void) override;
+    void * Next(void) override;
+    void Clear(void) override;
+    bool IsEmpty(void) override;
+    bool Have(void *) override;
     /* destructor */
     ~CStack();
 };
@@ -123,9 +123,9 @@ public:
     /* constructors */
     CQueue();
     /* overrides */
-    int Push(void *);
-    void * Pop(void);
-    void Clear(void);
+    int Push(void *) override;
+    void * Pop(void) override;
+    void Clear(void) override;
     /* destructor */
     ~CQueue();
 };
