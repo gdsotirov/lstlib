@@ -206,7 +206,7 @@ bool LstLib::CStack::Have(void *pData) {
  * Clears all elements from the stack.
  */
 LstLib::CStack::~CStack() {
-    ClearStack();
+    this->ClearStack();
 }
 
 /****************************************************************************
@@ -267,7 +267,7 @@ void * LstLib::CQueue::Pop(void) {
 }
 
 /**
- * @brief Clears all element from the queue
+ * @brief Clears all elements from the queue
  */
 void LstLib::CQueue::Clear(void) {
     ClearQueue();
@@ -288,7 +288,7 @@ void LstLib::CQueue::ClearQueue(void) {
  * Clears all elements from the queue.
  */
 LstLib::CQueue::~CQueue() {
-    ClearQueue();
+    this->ClearQueue();
 }
 
 /****************************************************************************
